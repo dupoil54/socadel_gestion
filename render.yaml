@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: socadel-gestion
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn main:app
+    healthCheckPath: /health
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DATABASE_URL
+        fromDatabase:
+          name: socadel-db
+          property: connectionString
+      - key: INITIAL_ADMIN_USER
+        value: admin
+      - key: INITIAL_ADMIN_PASSWORD
+        sync: false
+databases:
+  - name: socadel-db
+    databaseName: socadel
+    user: socadel_user

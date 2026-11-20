@@ -1,1 +1,1 @@
-
+Emplacement réservé au logo officiel SOCAD’EL.
